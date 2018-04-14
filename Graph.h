@@ -18,13 +18,17 @@ public:
   stack<int> DFSReverse();
   void DFSMini(int);
 
-  vector< vector<int> > DFSForward(stack<int> &);
+  vector< set<int> > DFSForward();
   void DFSscc(int);
+  void setStack(stack<int>);
+  stack<int> getStack();
 
 
 private:
   map<int,Node> graphMap; //Node and its adjancey list
   stack<int> stackOInts;
-  vector< vector<int> > mySets;
-  vector<int> innerSet;
+  vector< set<int> > mySets;
+  //set<int> innerSet;
+  vector<int> test;
+  set<int> outputSet;
 };

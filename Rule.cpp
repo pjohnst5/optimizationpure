@@ -16,7 +16,6 @@ string Rule::ToString()
 {
   out = rulesPredicates.at(0).ToString();
   out += " :- ";
-//  cout << "This is out " << out << endl;
   for (unsigned int i = 1; i < rulesPredicates.size(); ++i){
     out += rulesPredicates.at(i).ToString();
     if (i < rulesPredicates.size() - 1){
@@ -25,6 +24,19 @@ string Rule::ToString()
   }
   out += ".";
   return out;
+}
+
+string Rule::finalToString() 
+{
+    out = rulesPredicates.at(0).ToString();
+    out += " :- ";
+    for (unsigned int i = 1; i < rulesPredicates.size(); ++i){
+      out += rulesPredicates.at(i).ToString();
+      if (i < rulesPredicates.size() - 1){
+        out += ",";
+      }
+    }
+    return out;
 }
 
 vector<Predicate> Rule::GetPredicates()

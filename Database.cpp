@@ -87,13 +87,12 @@ void Database::MakeForests()
       }
     }
   }
-  /*
-  cout << "Printing graph with original Nodes" << endl;
-  PrintGraph(originalGraphNodes);
-  cout << endl;
-  cout << "Printing graph with reverse nodes" << endl;
-  PrintGraph(reverseForest);
-  */
+  
+  // cout << "Printing graph with original Nodes" << endl;
+  // PrintGraph(originalGraphNodes);
+  // cout << "Printing graph with reverse nodes" << endl;
+  // PrintGraph(reverseForest);
+  
   return;
 }
 
@@ -102,18 +101,18 @@ void Database::ConstructSCCs()
   MakeForests();
 
   myStack = reverseForest.DFSReverse();
-/*
-  stack<int> myStackPrint = myStack;
-  cout << "Printing the stack" << endl;
 
-  while (!myStackPrint.empty()){
-    int num = myStackPrint.top();
-    cout << num << endl;
-    myStackPrint.pop();
-  }
-  cout << endl;
-*/
-  mySccs = originalGraphNodes.DFSForward(myStack);
+  // cout << "Printing the stack" << endl;
+  // stack<int> myStackPrint = myStack;
+  // while (!myStackPrint.empty()){
+  //   int num = myStackPrint.top();
+  //   cout << num << endl;
+  //   myStackPrint.pop();
+  // }
+  // cout << endl;
+
+  originalGraphNodes.setStack(myStack);
+  mySccs = originalGraphNodes.DFSForward();
 
   MakeVectorOfRules();
 }
@@ -125,9 +124,9 @@ void Database::MakeVectorOfRules()
   vector<Rule> realRules = myDP.GetRules();
 
   for (unsigned int i = 0; i < mySccs.size(); ++i){
-    vector<int> tempScc = mySccs.at(i);
-    for (unsigned int j = 0; j < tempScc.size(); ++j) {
-      tempRules.push_back(realRules.at(tempScc.at(j)));
+    set<int>::iterator it;
+    for (it = mySccs.at(i).begin(); it != mySccs.at(i).end(); ++it) {
+      tempRules.push_back(realRules.at(*it));
     }
     myRules.push_back(tempRules);
     tempRules.clear();
@@ -180,11 +179,23 @@ void Database::InterpretRules()
 
   cout << "Rule Evaluation" << endl;
   for (unsigned int i = 0; i < myRules.size(); ++i){
-    if(myRules.at(i).size() == 1 && tempGraphMap[mySccs.at(i).at(0)].GetDependsOnItself() == false){
+    if(myRules.at(i).size() == 1 && tempGraphMap[*(mySccs.at(i).begin())].GetDependsOnItself() == false){
+      cout << "SCC: R" << *(mySccs.at(i).begin()) << endl;
       EvaluateRules(myRules.at(i));
-      cout << "1 passes: R" << mySccs.at(i).at(0) << endl;
+      cout << "1 passes: R" << *(mySccs.at(i).begin()) << endl;
     }
     else {
+      cout << "SCC: ";
+      for (set<int>::iterator it=mySccs.at(i).begin(); it!=mySccs.at(i).end(); ++it){
+        cout << "R" << *it;
+        ++it;
+        if(it != mySccs.at(i).end()){
+          cout << ",";
+        }
+        --it;
+      }//End of printing set
+      cout << endl;
+
       int initialSize = 0;
       int endingSize = 0;
       numPasses = 0;
@@ -194,16 +205,12 @@ void Database::InterpretRules()
         endingSize = GetSizeOfDatabase();
         numPasses++;
       } while(initialSize != endingSize);
-      set<int> sccInts;
-      for (unsigned int k = 0; k < mySccs.at(i).size(); ++k){ //makes set
-        sccInts.insert(mySccs.at(i).at(k));
-      }
+
       cout << numPasses << " passes: ";
-      for (set<int>::iterator it=sccInts.begin(); it!=sccInts.end(); ++it){
-        int someInt = *it;
-        cout << "R" << someInt;
+      for (set<int>::iterator it=mySccs.at(i).begin(); it!=mySccs.at(i).end(); ++it){
+        cout << "R" << *it;
         ++it;
-        if(it != sccInts.end()){
+        if(it != mySccs.at(i).end()){
           cout << ",";
         }
         --it;
@@ -228,6 +235,7 @@ void Database::EvaluateRules(vector<Rule> &tempRules)
   Schema joinedSchema;
 
   for (unsigned int i = 0; i < tempRules.size(); ++i){
+    cout << tempRules.at(i).finalToString() << endl;
     tempPredicates = tempRules.at(i).GetPredicates();
     headRelationName = tempPredicates.at(0).GetHeadID();
     headSchema = MakeHeadSchema(tempPredicates.at(0));

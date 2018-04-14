@@ -10,6 +10,7 @@ public:
   void AddPredicate(Predicate);
   void Clear();
   string ToString();
+  string finalToString();
   vector<Predicate> GetPredicates();
   string GetRuleHeadID();
 

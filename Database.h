@@ -36,6 +36,6 @@ private:
   bool noIDs;
   int numPasses;
   stack<int> myStack;
-  vector < vector<int> > mySccs;
+  vector < set<int> > mySccs;
   vector< vector<Rule> > myRules;
 };

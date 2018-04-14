@@ -112,7 +112,18 @@ Relation Relation::Union(Relation &givenRelation)
 
     for (set<Tuple>::iterator it=givenSet.begin(); it!=givenSet.end(); ++it) {
       Tuple innerTuple = *it;
-      newSet.insert(innerTuple);
+      if (newSet.insert(innerTuple).second){
+        cout << "  ";
+         for (unsigned int i = 0; i < mySchema.size(); i++) {
+          if (i == mySchema.size()-1){
+            cout << mySchema.at(i) << "=" << innerTuple.at(i) << endl;  
+          }
+          else {
+            cout << mySchema.at(i) << "=" << innerTuple.at(i) << ", ";
+          }
+          
+         }
+      }
     }
     newRelation = Relation(name,mySchema,newSet);
     return newRelation;

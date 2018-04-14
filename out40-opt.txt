@@ -1,4 +1,4 @@
- Dependency Graph
+Dependency Graph
 R0:
 
 Rule Evaluation

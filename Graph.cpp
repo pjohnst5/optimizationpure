@@ -23,21 +23,27 @@ map<int,Node> Graph::GetGraphMap()
   return graphMap;
 }
 
+void Graph::setStack(stack<int> in) {
+  stackOInts = in;
+}
 
-vector< vector<int> > Graph::DFSForward(stack<int> &localStack)
+stack<int> Graph::getStack() {
+  return stackOInts;
+}
+
+vector< set<int> > Graph::DFSForward()
 {
-  int ruleIndex = 0;
-
-  while (!localStack.empty()){
-    ruleIndex = localStack.top();
-    localStack.pop();
-
-    innerSet.clear();
-    if (graphMap[ruleIndex].GetVisited() == false){
-      graphMap[ruleIndex].SetAsVisited();
-      innerSet.push_back(ruleIndex);
-      DFSscc(ruleIndex);
-      mySets.push_back(innerSet);
+  //cout << "HI " << endl;
+  while (!stackOInts.empty()){
+    DFSscc(stackOInts.top());
+    stackOInts.pop();
+    if (test.size() != 0){
+      for (unsigned int i = 0; i < test.size(); i++){
+        outputSet.insert(test.at(i));
+      }
+      mySets.push_back(outputSet);
+      test.clear();
+      outputSet.clear();
     }
   }
   return mySets;
@@ -45,19 +51,13 @@ vector< vector<int> > Graph::DFSForward(stack<int> &localStack)
 
 void Graph::DFSscc(int localInt)
 {
-  Node tempNode = graphMap[localInt];
-  set<int> localAdjList = tempNode.GetAdjList();
-
-  set<int>::iterator it;
-
-  for (it = localAdjList.begin(); it != localAdjList.end(); ++it) {
-    int indexOfNode = *it; // Note the "*" here
-
-    if (graphMap[indexOfNode].GetVisited() == false){
-      graphMap[indexOfNode].SetAsVisited();
-      innerSet.push_back(indexOfNode);
-      DFSscc(indexOfNode);
+  if (!graphMap[localInt].GetVisited()){
+    graphMap[localInt].SetAsVisited();
+    set<int>::iterator it;
+    for (it = (graphMap[localInt].GetAdjList()).begin(); it != (graphMap[localInt].GetAdjList()).end(); ++it) {
+      DFSscc(*it);
     }
+    test.push_back(localInt);
   }
   return;
 }

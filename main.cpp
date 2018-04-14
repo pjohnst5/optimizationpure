@@ -26,6 +26,7 @@ int main(int arg, char* args[])
 
     if (myParser.getFailedOrNot() == false){
       //myDatalogProgram.Print();
+      
       myDatabase.SetDatalogProgram(myDatalogProgram);
       myDatabase.ConstructRelations();
     //  myDatabase.Print();
