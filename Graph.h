@@ -15,12 +15,12 @@ public:
   void AddToGraph(int);
   void SetToDependsOnSelf(int);
   map<int,Node> GetGraphMap();
-  stack<int> DFSReverse();
+  stack<int>& DFSReverse();
   void DFSMini(int);
 
   vector< set<int> > DFSForward();
   void DFSscc(int);
-  void setStack(stack<int>);
+  void setStack(stack<int> &);
   stack<int> getStack();
 
 

@@ -100,7 +100,7 @@ void Database::ConstructSCCs()
 {
   MakeForests();
 
-  myStack = reverseForest.DFSReverse();
+  //myStack = reverseForest.DFSReverse();
 
   // cout << "Printing the stack" << endl;
   // stack<int> myStackPrint = myStack;
@@ -111,7 +111,7 @@ void Database::ConstructSCCs()
   // }
   // cout << endl;
 
-  originalGraphNodes.setStack(myStack);
+  originalGraphNodes.setStack(reverseForest.DFSReverse());
   mySccs = originalGraphNodes.DFSForward();
 
   MakeVectorOfRules();
@@ -138,6 +138,7 @@ void Database::MakeVectorOfRules()
 
 void Database::InterpretRules()
 {
+
   ConstructSCCs();
 /*
   cout << "Printing vectors of Rules in their SCCs" << endl;
@@ -251,7 +252,7 @@ void Database::EvaluateRules(vector<Rule> &tempRules)
   return;
 }
 
-vector<int> Database::MakeVectorOfIndexes(Schema headSchema, Schema joinedSchema)
+vector<int> Database::MakeVectorOfIndexes(Schema& headSchema, Schema& joinedSchema)
 {
   vector<int> returnVector;
 
@@ -265,7 +266,7 @@ vector<int> Database::MakeVectorOfIndexes(Schema headSchema, Schema joinedSchema
   return returnVector;
 }
 
-Schema Database::MakeHeadSchema(Predicate headPredicate)
+Schema Database::MakeHeadSchema(Predicate& headPredicate)
 {
   Schema newSchema;
   vector<Parameter> tempParameters = headPredicate.GetParameters();
@@ -363,7 +364,7 @@ Relation Database::EvaluateQuery(Predicate localQuery)
   return localRelation;
 }
 
-bool Database::IsThereADuplicate(vector<Parameter> localParameters, vector<int> columnsToProject, int i)
+bool Database::IsThereADuplicate(vector<Parameter> & localParameters, vector<int> & columnsToProject, int i)
 {
   for (unsigned int k = 0; k < columnsToProject.size(); ++k){
     if (localParameters.at(i).ToString() == localParameters.at(columnsToProject.at(k)).ToString()){

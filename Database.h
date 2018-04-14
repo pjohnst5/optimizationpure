@@ -23,10 +23,10 @@ public:
   void InterpretRules();
   void EvaluateRules(vector<Rule> &);
   int GetSizeOfDatabase();
-  Schema MakeHeadSchema(Predicate);
-  vector<int> MakeVectorOfIndexes(Schema,Schema);
+  Schema MakeHeadSchema(Predicate &);
+  vector<int> MakeVectorOfIndexes(Schema &,Schema &);
   Relation EvaluateQuery(Predicate);
-  bool IsThereADuplicate(vector<Parameter>,vector<int>,int);
+  bool IsThereADuplicate(vector<Parameter> &,vector<int> &,int);
   void PrintGraph(Graph &);
   void PrintSCC(int);
 private:

@@ -35,7 +35,7 @@ Relation Relation::Select(int localInt, int secondInt)
   return newRelation;
 }
 
-Relation Relation::Project(vector<int> localVector)
+Relation Relation::Project(vector<int> & localVector)
 {
   Schema newSchema;
   set<Tuple> newSet;
@@ -75,7 +75,7 @@ Relation Relation::Project(vector<int> localVector)
   return newRelation;
 }
 
-Relation Relation::Rename(Schema localSchema)
+Relation Relation::Rename(Schema & localSchema)
 {
   /*
   if (localSchema.size() != mySchema.size()){
@@ -157,7 +157,7 @@ Relation Relation::Join(Relation &givenRelation)
   return newRelation;
 }
 
-Tuple Relation::ActuallyJoinTwoTuples(Tuple t1, Tuple t2, vector<int> duplicateIDsVector)
+Tuple Relation::ActuallyJoinTwoTuples(Tuple & t1, Tuple & t2, vector<int> & duplicateIDsVector)
 {
   Tuple tupleToReturn = t1;
 
@@ -169,7 +169,7 @@ Tuple Relation::ActuallyJoinTwoTuples(Tuple t1, Tuple t2, vector<int> duplicateI
   return tupleToReturn;
 }
 
-bool Relation::Joinable(Schema s1, Schema s2, Tuple t1, Tuple t2)
+bool Relation::Joinable(Schema & s1, Schema & s2, Tuple & t1, Tuple & t2)
 {
   for (unsigned int i = 0; i < s1.size(); ++i){
     for (unsigned int j = 0; j < s2.size(); ++j){
@@ -184,7 +184,7 @@ bool Relation::Joinable(Schema s1, Schema s2, Tuple t1, Tuple t2)
 }
 
 
-Relation Relation::MakeNewRelation(vector<int> localVectorofInts, Schema givenSchema)
+Relation Relation::MakeNewRelation(vector<int> & localVectorofInts, Schema & givenSchema)
 {
   Schema newSchema = mySchema;
   set<Tuple> newSet;
@@ -199,7 +199,7 @@ Relation Relation::MakeNewRelation(vector<int> localVectorofInts, Schema givenSc
 }
 
 
-vector<int> Relation::CheckForMatchingIDs(Schema givenSchema)// returns indexes of not repeat ID's in given schema.
+vector<int> Relation::CheckForMatchingIDs(Schema & givenSchema)// returns indexes of not repeat ID's in given schema.
 {
   vector<int> indexesOfSameIDsNot;
   bool repeatID = false;
@@ -227,7 +227,7 @@ void Relation::SetTuples(set<Tuple> &localSet)
   return;
 }
 
-void Relation::AddToSet(Tuple tempT)
+void Relation::AddToSet(Tuple & tempT)
 {
   mySetOfTuples.insert(tempT);
   return;

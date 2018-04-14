@@ -23,7 +23,7 @@ map<int,Node> Graph::GetGraphMap()
   return graphMap;
 }
 
-void Graph::setStack(stack<int> in) {
+void Graph::setStack(stack<int> & in) {
   stackOInts = in;
 }
 
@@ -63,7 +63,7 @@ void Graph::DFSscc(int localInt)
 }
 
 
-stack<int> Graph::DFSReverse()
+stack<int>& Graph::DFSReverse()
 {
 
   for (map<int,Node>::iterator it=this->graphMap.begin(); it!=this->graphMap.end(); ++it){
