@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Comiling..." 
+echo "Compiling..." 
 
  g++ -Wall -Werror -std=c++17 -g *.cpp -o testex
 
