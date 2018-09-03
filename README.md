@@ -23,23 +23,27 @@ Every text file used as input to the Datalog Parser must follow this grammar.
 	* RULES COLON ruleList 
 	* QUERIES COLON query queryList
 
-* schemeList	->	
-	* scheme schemeList | lambda
-* factList	->	
-	* fact factList | lambda
-* ruleList	->	
-	* rule ruleList | lambda
-* queryList	->	
-	* query queryList | lambda
 
 * scheme   	-> 	
 	* headPredicate
+* schemeList	->	
+	* scheme schemeList | lambda
 * fact    	->	
 	* ID LEFT_PAREN STRING stringList RIGHT_PAREN PERIOD
+* factList	->	
+	* fact factList | lambda
 * rule    	->
 	* headPredicate COLON_DASH predicate predicateList PERIOD
+* ruleList	->	
+	* rule ruleList | lambda
 * query	        ->      
 	* predicate Q_MARK
+* queryList	->	
+	* query queryList | lambda
+
+
+
+
 
 * headPredicate	->	
 	* ID LEFT_PAREN ID idList RIGHT_PAREN
