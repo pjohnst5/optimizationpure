@@ -74,8 +74,8 @@ Every text file used as input to the Datalog Parser must follow this grammar whe
 ## Tokens
 Tokey Type  | Description | Examples
 ------------- | ------------- | -------------
-COMMA  | Content Cell  | Content Cell
-PERIOD  | Content Cell  | Content Cell
+COMMA  | The ',' character  | ,
+PERIOD  | 	The '.' character  | Content Cell
 Q_MARK  | Content Cell  | Content Cell
 LEFT_PAREN  | Content Cell  | Content Cell
 RIGHT_PAREN  | Content Cell  | Content Cell
