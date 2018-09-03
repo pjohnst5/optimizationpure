@@ -90,8 +90,7 @@ QUERIES  | The string "Queries"  | Queries
 ID  | An identifier is a letter followed by zero or more letters or digits, and is not a keyword (Schemes, Facts, Rules, Queries).  | Valid - "Identifier1" Invalid - "1stPerson"
 STRING  | A string is a sequence of characters enclosed in single quotes. White space (space, tab) is not skipped when inside a string. Two adjacent single quotes within a string denote an apostophe. THe line number for a string token is the line where the string begins. If a string is not terminated (end of file is encountered before the end of the string), the token becomes an undefined token. | Valid - " 'This is a string' " Valid - " 'This isn''t two strings' " Valid - " '' " (the empty string)
 COMMENT  | A line comment starts with a has character (#) and ends at the end of the line or end of the file  | # hello
-COMMENT | A comment may also be a block comment which starts with \#\| and ends with \|\#. Block comments may cover multiple lines. Block comments can be empty and multiple comments can appear on the same line. The line number for a comment token is the line where the comment begins. If a block comment is not terminated (end of file is encountered before the end of the comment), the token becomes an undefined token. | Valid - " \#\|\|\# " Valid - " \#\|This is a multiline
-comment \|\#"
+COMMENT | A comment may also be a block comment which starts with \#\| and ends with \|\#. Block comments may cover multiple lines. Block comments can be empty and multiple comments can appear on the same line. The line number for a comment token is the line where the comment begins. If a block comment is not terminated (end of file is encountered before the end of the comment), the token becomes an undefined token. | Valid - " \#\|\|\# " Valid - " \#\|This is a multiline comment \|\#"
 UNDEFINED  | Anything that doesn't fit the above categories  | $%&
 EOF | The end of the input file | 
 
