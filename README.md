@@ -75,20 +75,23 @@ Every text file used as input to the Datalog Parser must follow this grammar whe
 Tokey Type  | Description | Examples
 ------------- | ------------- | -------------
 COMMA  | The ',' character  | ,
-PERIOD  | 	The '.' character  | Content Cell
-Q_MARK  | Content Cell  | Content Cell
-LEFT_PAREN  | Content Cell  | Content Cell
-RIGHT_PAREN  | Content Cell  | Content Cell
-COLON  | Content Cell  | Content Cell
-COLON_DASH  | Content Cell  | Content Cell
-MULTIPLY  | Content Cell  | Content Cell
-ADD  | Content Cell  | Content Cell
-SCHEMES  | Content Cell  | Content Cell
-FACTS  | Content Cell  | Content Cell
-RULES  | Content Cell  | Content Cell
-QUERIES  | Content Cell  | Content Cell
-ID  | Content Cell  | Content Cell
-STRING  | Content Cell  | Content Cell
-COMMENT  | Content Cell  | Content Cell
-UNDEFINED  | Content Cell  | Content Cell
+PERIOD  | The '.' character  | Content Cell
+Q_MARK  | The '?' character| ?
+LEFT_PAREN  | The '(' character | (
+RIGHT_PAREN  | The ')'  | )
+COLON  | The ':' character | :
+COLON_DASH  | the string ":-" | :-
+MULTIPLY  | The '\*' character | \*
+ADD  | The '+' character  | +
+SCHEMES  | The string "Schemes"  | Schemes
+FACTS  | The string "Facts"  | Facts
+RULES  | The string "Rules"  | Rules
+QUERIES  | The string "Queries"  | Queries
+ID  | An identifier is a letter followed by zero or more letters or digits, and is not a keyword (Schemes, Facts, Rules, Queries).  | Valid - "Identifier1" Invalid - "1stPerson"
+STRING  | A string is a sequence of characters enclosed in single quotes. White space (space, tab) is not skipped when inside a string. Two adjacent single quotes within a string denote an apostophe. THe line number for a string token is the line where the string begins. If a string is not terminated (end of file is encountered before the end of the string), the token becomes an undefined token. | Valid - " 'This is a string' " Valid - " 'This isn''t two strings' " Valid - " '' " (the empty string)
+COMMENT  | A line comment starts with a has character (#) and ends at the end of the line or end of the file  | # this is a comment
+COMMENT | A comment may also be a block comment which starts with \#\| and ends with \|\#. Block comments may cover multiple lines. Block comments can be empty and multiple comments can appear on the same line. The line number for a comment token is the line where the comment begins. If a block comment is not terminated (end of file is encountered before the end of the comment), the token becomes an undefined token. | Valid - " #||# " Valid - " #|This is a multiline
+comment |#"
+UNDEFINED  | Anything that doesn't fit the above categories  | $%&
+EOF | The end of the input file | 
 
