@@ -74,6 +74,21 @@ Every text file used as input to the Datalog Parser must follow this grammar whe
 ## Tokens
 First Header  | Second Header | Third Header
 ------------- | ------------- | -------------
-Content Cell  | Content Cell  | Content Cell
-Content Cell  | Content Cell  | Content Cell
+COMMA  | Content Cell  | Content Cell
+PERIOD  | Content Cell  | Content Cell
+Q_MARK  | Content Cell  | Content Cell
+LEFT_PAREN  | Content Cell  | Content Cell
+RIGHT_PAREN  | Content Cell  | Content Cell
+COLON  | Content Cell  | Content Cell
+COLON_DASH  | Content Cell  | Content Cell
+MULTIPLY  | Content Cell  | Content Cell
+ADD  | Content Cell  | Content Cell
+SCHEMES  | Content Cell  | Content Cell
+FACTS  | Content Cell  | Content Cell
+RULES  | Content Cell  | Content Cell
+QUERIES  | Content Cell  | Content Cell
+ID  | Content Cell  | Content Cell
+STRING  | Content Cell  | Content Cell
+COMMENT  | Content Cell  | Content Cell
+UNDEFINED  | Content Cell  | Content Cell
 
