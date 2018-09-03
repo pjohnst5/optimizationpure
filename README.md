@@ -2,9 +2,6 @@
 
 This datalog parser can be used to enter information into tables and join said tables by writing rules.
 
-To run this program, see the "How to run" section
-
-
 ## How to run ##
 
 Clone the repository
