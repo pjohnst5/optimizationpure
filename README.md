@@ -17,10 +17,11 @@ Run this command replacing "in.txt" with your desired text file that follows the
 
 Every text file used as input to the Datalog Parser must follow this grammar.
 
-datalogProgram	->	SCHEMES COLON scheme schemeList
-		        FACTS COLON factList
-		        RULES COLON ruleList
-		        QUERIES COLON query queryList
+* datalogProgram	
+	* SCHEMES COLON scheme schemeList
+	* FACTS COLON factList
+	* RULES COLON ruleList
+	* QUERIES COLON query queryList
 
 schemeList	->	scheme schemeList | lambda
 factList	->	fact factList | lambda
