@@ -15,7 +15,7 @@ Run this command replacing "in.txt" with your desired text file that follows the
 
 ## Grammar ##
 
-Every text file used as input to the Datalog Parser must follow this grammar.
+Every text file used as input to the Datalog Parser must follow this grammar where words in all caps are tokens (see "Tokens" section).
 
 * datalogProgram	-> 	
 	* SCHEMES COLON scheme schemeList	
@@ -70,4 +70,10 @@ Every text file used as input to the Datalog Parser must follow this grammar.
 	* LEFT_PAREN parameter operator parameter RIGHT_PAREN
 * operator	->	
 	* ADD | MULTIPLY
+
+## Tokens
+First Header  | Second Header | Third Header
+------------- | ------------- | -------------
+Content Cell  | Content Cell  | Content Cell
+Content Cell  | Content Cell  | Content Cell
 
