@@ -72,7 +72,7 @@ Every text file used as input to the Datalog Parser must follow this grammar whe
 	* ADD | MULTIPLY
 
 ## Tokens
-First Header  | Second Header | Third Header
+Tokey Type  | Description | Examples
 ------------- | ------------- | -------------
 COMMA  | Content Cell  | Content Cell
 PERIOD  | Content Cell  | Content Cell
